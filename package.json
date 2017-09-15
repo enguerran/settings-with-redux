@@ -1,0 +1,23 @@
+{
+  "name": "a-setting-page-with-redux",
+  "description": "This demo shows how to use redux to store app settings.\nAnd how changing this settings could trigger some code.",
+  "version": "0.0.108",
+  "dependencies": {
+    "redux-devtools-log-monitor": "1.3.0",
+    "redux-devtools-dock-monitor": "1.1.2",
+    "redux-devtools": "3.4.0",
+    "redux": "3.7.2",
+    "react-redux": "5.0.6",
+    "react-dom": "15.5.3",
+    "react": "15.5.3"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
