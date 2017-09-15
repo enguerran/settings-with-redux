@@ -15,14 +15,27 @@ const store = configureStore();
 if (isBackupOn(store.getState())) {
   startBackup();
 }
-store.subscribe(() => {
-  console.log("global state changed: ", store.getState())
-  if (isBackupOn(store.getState())) {
-    startBackup();
-  } else {
-    stopBackup();
-  }
-});
+if (window.Worker) {
+  console.log("working with Web Worker");
+  const worker = new Worker("backup-worker.js");
+  store.subscribe(() => {
+    console.log("global state changed: ", store.getState());
+    if (isBackupOn(store.getState())) {
+      worker.postMessage({ cmd: "start" });
+    } else {
+      worker.postMessage({ cmd: "stop" });
+    }
+  });
+} else {
+  store.subscribe(() => {
+    console.log("global state changed: ", store.getState());
+    if (isBackupOn(store.getState())) {
+      startBackup();
+    } else {
+      stopBackup();
+    }
+  });
+}
 
 const App = () => (
   <div style={styles}>
